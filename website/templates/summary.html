@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{url_for('static', filename='CSS/home.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">  </script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        <title>Article Summarizer | Summary</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+<body>
+    {% if title %}
+    <div class="container mt-5 animate__animated animate__fadeIn">
+        <h1 class="text-center mb-4">Summary</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ title }}</h2>
+                <h6 class="card-subtitle mb-2 text-muted">By {{ authors }}</h6>
+                <p class="card-text">{{ summary }}</p>
+                <p class="card-text"><small class="text-muted">Published on {{ publish_date }}</small></p>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+        <h1 class="mb-4 animate__animated animate__fadeInDown">Article Summarizer</h1>
+        <p class="mb-4 animate__animated animate__fadeInUp">Paste the URL of the article you want to summarize:</p>
+        <form  method="POST" class="w-50 animate__animated animate__fadeInUp">
+            <div class="form-group">
+                <input type="url" class="form-control" id="articleUrl" name="url" placeholder="Enter article URL" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Summarize</button>
+        </form>
+    </div>
+    {% endif %}
+</body>
+</html>
